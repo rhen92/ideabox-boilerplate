@@ -32,8 +32,12 @@ bottom of card/show ideas button: #5356A4
   flex-direction: column;
   align-items: center;
   background-color: #A9AAD2;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
+  margin-left: 285px;
+  padding-top: 10px;
 }
+
+
 
 .title-group,
 .body-group {
@@ -58,7 +62,7 @@ bottom of card/show ideas button: #5356A4
 
 .starred-container {
   border: 1px solid #353567;
-    height: 125px;
+  height: 125px;
 }
 
 .filter-label {
@@ -69,28 +73,34 @@ bottom of card/show ideas button: #5356A4
 
 .input-label {
   align-items: flex-start;
+  font-weight: bold;
+  color: #1F1F3D;
 }
 
-.navTitle {
+.nav-title {
   font-size: 18px;
   margin: 15px;
 }
 
 .search-ideas {
-  padding-bottom: 40px;
-  padding-left: 183px;
-  padding-right: 183px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 275px;
+  font-size: 20px;
+  color: #A9AAD2;
 }
 
 .body-input {
-  padding-bottom: 80px;
+  padding-bottom: 70px;
   padding-left: 200px;
   padding-right: 200px;
 }
 
 .save-button,
 .title-input {
-  padding-bottom: 30px;
+  padding-bottom: 15px;
+  padding-top: 15px;
   padding-left: 200px;
   padding-right: 200px;
 }
@@ -103,9 +113,12 @@ bottom of card/show ideas button: #5356A4
   border-radius: 1px;
   border-color: #5356A4;
 }
+
 .magnification {
-  background-color: #5356A4;
-  padding: 5px;
+  background-color: #363567;
+  padding-top: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: white;
   border-radius: 2px;
 }
@@ -123,13 +136,13 @@ bottom of card/show ideas button: #5356A4
   height: 30%;
 }
 
-
 .save-button {
   margin: 10px;
-  background-color: #1F1F3D;
+  background-color: #363567;
   color: #E9E9F3;
-  width: 39%;
+  width: 48.5%;
   border-width: 1px;
   border-style: solid;
   font-size: 20px;
+  font-weight: bold;
 }

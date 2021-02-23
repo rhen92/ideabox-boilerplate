@@ -55,12 +55,12 @@ nav {
   border: 1px solid #353567;
 }
 
-/* .filter-label {
-  margin: 10px; */
-  /* color: #E9E9F3;
+.filter-label {
+  margin: 10px;
+  color: #E9E9F3;
 }
 
-/* .show-button{
+ .show-button {
   margin: 10px;
   background-color: #5356A4;
   color: #E9E9F3;
@@ -75,4 +75,4 @@ nav {
 .search-ideas {
   border-radius: 1px;
   border-color: #353567;
-} */
+}

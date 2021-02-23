@@ -16,7 +16,7 @@ bottom of card/show ideas button: #5356A4
   font-family: "Open Sans";
 }
 
-nav {
+.nav-area {
   background-color: #1F1F3D;
   display: flex;
   flex-direction: column;
@@ -36,10 +36,14 @@ nav {
   background-color: #A9AAD2;
 }
 
-.magnification {
-  background-color: #5356A4;
-  padding: 5px;
-  color: white;
+.title-group,
+.body-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.save-group {
+  display: flex;
 }
 
 .bottom {
@@ -58,15 +62,37 @@ nav {
 .filter-label {
   margin: 10px;
   color: #E9E9F3;
+  font-size: 15px;
 }
 
- .show-button {
+.input-label {
+  align-items: flex-start;
+
+}
+
+.navTitle {
+  font-size: 18px;
+}
+
+/* ~~~~~~ Buttons ~~~~~~~*/
+
+.magnification {
+  background-color: #5356A4;
+  padding: 5px;
+  color: white;
+  border-radius: 2px;
+}
+
+.show-button {
   margin: 10px;
   background-color: #5356A4;
   color: #E9E9F3;
-  border-color: #353567;
   border-width: 1px;
   border-style: solid;
+  font-size: 17px;
+  font-weight: bold;
+  width: 75%;
+  height: 50%;
 }
 
 .show-button,
@@ -74,5 +100,15 @@ nav {
 .body-input,
 .search-ideas {
   border-radius: 1px;
-  border-color: #353567;
+  border-color: #5356A4;
+
+}
+
+.save-button {
+  padding: 5px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin: 10px;
+  background-color: #1F1F3D;
+  color: #E9E9F3;
 }

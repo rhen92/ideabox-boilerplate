@@ -8,8 +8,8 @@
 </head>
 
 <body>
-  <nav>
-    <h5>IdeaBox</h5>
+  <nav class="nav-area">
+    <h5 class="navTitle">IdeaBox</h5>
     <div class="starred-container">
       <h6 class="filter-label">Filter Starred Ideas</h6>
       <button class="show-button">Show Starred Ideas</button>
@@ -17,15 +17,21 @@
   </nav>
   <section>
     <form class="top">
-      <label>Title</label>
-      <input class="title-input"></input>
-      <label>Body</label>
-      <input class="body-input"></input>
-      <button>Save</button>
-      <button class="magnification">
-        <img src="./assets/search.svg" alt="magnifying glass">
-      </button>
-      <input value="Search ideas" class="search-ideas"></input>
+      <div class="title-group">
+       <label class="input-label">Title</label>
+       <input class="title-input"></input>
+      </div>
+      <div class="body-group">
+       <label class="input-label">Body</label>
+       <input class="body-input"></input>
+      </div>
+      <button class="save-button">Save</button>
+        <div class="save-group">
+          <button class="magnification">
+          <img src="./assets/search.svg" alt="magnifying glass">
+          </button>
+          <input value="Search ideas" class="search-ideas"></input>
+        </div>
     </form>
     <form class="bottom">
       <article>

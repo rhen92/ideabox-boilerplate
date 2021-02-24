@@ -1,12 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>IdeaBox</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./styles.css">
-  </head>
-  <body>
 
-    <script src="./src/main.js"></script>
-  </body>
+<head>
+  <title>IdeaBox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+
+<body>
+  <nav class="nav-area">
+    <h5 class="nav-title">IdeaBox</h5>
+    <div class="starred-container">
+      <h6 class="filter-label">Filter Starred Ideas</h6>
+      <button class="show-button">Show Starred Ideas</button>
+    </div>
+  </nav>
+  <section>
+    <form class="top">
+      <div class="title-group">
+       <label class="input-label">Title</label>
+       <input class="title-input"></input>
+      </div>
+      <div class="body-group">
+       <label class="input-label">Body</label>
+       <input class="body-input"></input>
+      </div>
+      <button class="save-button">Save</button>
+        <div class="save-group">
+          <button class="magnification">
+          <img src="./assets/search.svg" alt="magnifying glass">
+          </button>
+          <input value="Search ideas" class="search-ideas"></input>
+        </div>
+    </form>
+    <form class="bottom">
+      <article class="saved-card">
+        <div class="card-top">
+          <img class="active-star" src="./assets/star-active.svg" alt="active star">
+          <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+        </div>
+        <p class="idea-title">Idea title</p>
+        <p class="idea-body"> Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <div class="card-bottom">
+          <img src="./assets/comment.svg" alt="comment button">
+          <label>Comment</label>
+        </div>
+      </article>
+      <article class="saved-card">
+        <div class="card-top">
+          <img class="active-star" src="./assets/star-active.svg" alt="active star">
+          <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+        </div>
+        <p class="idea-title">Idea title</p>
+        <p class="idea-body"> Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <div class="card-bottom">
+          <img src="./assets/comment.svg" alt="comment button">
+          <label>Comment</label>
+        </div>
+      </article>
+      <article class="saved-card">
+        <div class="card-top">
+          <img class="active-star" src="./assets/star-active.svg" alt="active star">
+          <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+        </div>
+        <p class="idea-title">Idea title</p>
+        <p class="idea-body"> Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <div class="card-bottom">
+          <img src="./assets/comment.svg" alt="comment button">
+          <label>Comment</label>
+        </div>
+      </article>
+      <article class="saved-card">
+        <div class="card-top">
+          <img class="active-star" src="./assets/star-active.svg" alt="active star">
+          <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+        </div>
+        <p class="idea-title">Idea title</p>
+        <p class="idea-body"> Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <div class="card-bottom">
+          <img src="./assets/comment.svg" alt="comment button">
+          <label>Comment</label>
+        </div>
+      </article>
+      <article class="saved-card">
+        <div class="card-top">
+          <img class="active-star" src="./assets/star-active.svg" alt="active star">
+          <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+        </div>
+        <p class="idea-title">Idea title</p>
+        <p class="idea-body"> Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
+        <div class="card-bottom">
+          <img src="./assets/comment.svg" alt="comment button">
+          <label>Comment</label>
+        </div>
+      </article>
+    </form>
+  </section>
+  <script src="./src/main.js"></script>
+</body>
+
 </html>

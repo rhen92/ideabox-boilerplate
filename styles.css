@@ -1,0 +1,191 @@
+/* COLORS
+dark blue: #1F1F3D
+med blue: #A9AAD2
+light blue/grey: #EAEAF4
+white: #FFFFFF
+
+thin line: #353567
+bottom of card/show ideas button: #5356A4
+'Comment' text color: #E9E9F3
+'filter starred ideas': #BFBFDD
+
+ */
+
+* {
+  /* border: 1px solid red; */
+  font-family: "Open Sans";
+}
+
+.nav-area {
+  min-height: 100%;
+  background-color: #1F1F3D;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  color: white;
+  width: 20%;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #A9AAD2;
+  padding-bottom: 10px;
+  margin-left: 285px;
+  padding-top: 10px;
+}
+
+
+
+.title-group,
+.body-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.save-group {
+  display: flex;
+  margin:10px;
+}
+
+
+
+.starred-container {
+  border: 1px solid #353567;
+  height: 125px;
+}
+
+.filter-label {
+  margin: 10px;
+  color: #E9E9F3;
+  font-size: 15px;
+}
+
+.input-label {
+  align-items: flex-start;
+  font-weight: bold;
+  color: #1F1F3D;
+}
+
+.nav-title {
+  font-size: 18px;
+  margin: 15px;
+}
+
+.search-ideas {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 2px;
+  padding-right: 300px;
+  font-size: 20px;
+  color: #A9AAD2;
+  font-weight: 200;
+}
+
+.body-input {
+  padding-bottom: 70px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.save-button,
+.title-input {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+/* ~~~~~~ Buttons ~~~~~~~*/
+
+.show-button,
+.title-input,
+.body-input,
+.search-ideas {
+  border-radius: 1px;
+  border-color: #5356A4;
+}
+
+.magnification {
+  background-color: #5356A4;
+  padding: 5px;
+  color: white;
+  border-radius: 2px;
+}
+
+.show-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #5356A4;
+  color: #E9E9F3;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 17px;
+  font-weight: bold;
+  width: 85%;
+  height: 30%;
+}
+
+.save-button {
+  margin: 10px;
+  background-color: #1F1F3D;
+  color: #E9E9F3;
+  width: 50%;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ~~~~~~ Cards ~~~~~~~*/
+.saved-card {
+  border-width: 1px;
+  border-color: #1F1F3D;
+  border-style: solid;
+  background-color: #FFFFFF;
+  font-size: 1.5em;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+}
+
+.card-top {
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-bottom {
+  background-color: #5356A4;
+  color: #E9E9F3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.idea-title {
+  font-weight: bold;
+  color: #1F1F3D;
+  padding-left: 20px;
+
+}
+
+.idea-body {
+  color: #1F1F3D;
+  padding-left: 20px;
+  padding-right: 13px;
+  word-wrap: break-word;
+}
+
+.bottom {
+  background-color: #EAEAF4;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-bottom: 8%;
+  margin-left: 285px;
+  height: 100%;
+}

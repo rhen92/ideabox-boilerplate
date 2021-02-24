@@ -36,8 +36,6 @@ bottom of card/show ideas button: #5356A4
   padding-top: 10px;
 }
 
-
-
 .title-group,
 .body-group {
   display: flex;
@@ -49,8 +47,6 @@ bottom of card/show ideas button: #5356A4
   display: flex;
   margin:10px;
 }
-
-
 
 .starred-container {
   border: 1px solid #353567;

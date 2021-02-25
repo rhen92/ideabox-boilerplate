@@ -48,7 +48,7 @@ function displayCard() {
   }
 }
 
-// function clearInputs() {
-//   titleInput.value = '';
-//   bodyInput.value = '';
-// }
+function clearInputs() {
+  titleInput.value = '';
+  bodyInput.value = '';
+}

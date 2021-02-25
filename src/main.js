@@ -17,6 +17,7 @@ saveButton.addEventListener('click', buildIdeaCard);
 
 // functions
 function buildIdeaCard() {
+  event.preventDefault();
   freshIdea = new Idea(titleInput.value, bodyInput.value);
   displayCard();
 }

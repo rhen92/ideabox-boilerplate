@@ -7,9 +7,12 @@ var searchButton = document.querySelector('#searchButton');
 var bottomForm = document.querySelector('#bottomForm');
 var topForm = document.querySelector('#top');
 
+
 // Global Variables
 var ideaCards = [];
 var freshIdea;
+var activatedStar;
+var deleteButton;
 
 // Event listeners
 window.addEventListener('load', function() {
@@ -18,8 +21,9 @@ window.addEventListener('load', function() {
 
 topForm.addEventListener('input', checkInputs);
 saveButton.addEventListener('click', buildIdeaCard);
+deleteButton.addEventListener('click', deleteIdea);
 
-functions
+//functions
 function checkInputs() {
   if (titleInput.value && bodyInput.value) {
     saveButton.disabled = false;
@@ -45,8 +49,8 @@ function displayCard() {
     bottomForm.innerHTML += `
   <article class="saved-card">
     <div class="card-top">
-      <img class="active-star" src="./assets/star-active.svg" alt="active star">
-      <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+      <img id="activeStar" class="active-star" src="./assets/star-active.svg" alt="active star">
+      <input id="deleteCard" class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
     <p class="idea-body"> ${ideaCards[i].body}</p>
@@ -57,9 +61,21 @@ function displayCard() {
   </article>
   `;
   }
+  getVariables();
 }
 
 function clearInputs() {
   titleInput.value = '';
   bodyInput.value = '';
+}
+
+function getVariables() {
+  activatedStar = document.querySelector('#activeStar');
+  deleteButton = document.querySelector('#deleteCard');
+}
+
+function deleteIdea(event) {
+  if (event.target.classList.contains('delete-card')) {
+    event.target.closest('saved-card').remove();
+  }
 }

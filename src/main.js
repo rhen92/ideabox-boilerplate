@@ -5,17 +5,27 @@ var saveButton = document.querySelector('#saveButton');
 var searchInput = document.querySelector('#searchInput');
 var searchButton = document.querySelector('#searchButton');
 var bottomForm = document.querySelector('#bottomForm');
-
+var topForm = document.querySelector('#top');
 
 // Global Variables
 var ideaCards = [];
 var freshIdea;
 
 // Event listeners
+window.addEventListener('load', function() {
+  saveButton.disabled = true;
+})
+
+topForm.addEventListener('input', checkInputs);
 saveButton.addEventListener('click', buildIdeaCard);
 
-
 // functions
+// function checkInputs() {
+//   if (titleInput.value && bodyInput.value) {
+//     saveButton.disabled = false;
+//   }
+// }
+
 function buildIdeaCard() {
   event.preventDefault();
   freshIdea = new Idea(titleInput.value, bodyInput.value);
@@ -26,6 +36,7 @@ function addIdeaCards() {
   ideaCards.push(freshIdea);
   displayCard();
   clearInputs();
+  // saveButton.disabled = true;
 }
 
 function displayCard() {

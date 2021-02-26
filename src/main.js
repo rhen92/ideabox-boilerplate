@@ -19,12 +19,12 @@ window.addEventListener('load', function() {
 topForm.addEventListener('input', checkInputs);
 saveButton.addEventListener('click', buildIdeaCard);
 
-// functions
-// function checkInputs() {
-//   if (titleInput.value && bodyInput.value) {
-//     saveButton.disabled = false;
-//   }
-// }
+functions
+function checkInputs() {
+  if (titleInput.value && bodyInput.value) {
+    saveButton.disabled = false;
+  }
+}
 
 function buildIdeaCard() {
   event.preventDefault();
@@ -36,7 +36,7 @@ function addIdeaCards() {
   ideaCards.push(freshIdea);
   displayCard();
   clearInputs();
-  // saveButton.disabled = true;
+  saveButton.disabled = true;
 }
 
 function displayCard() {

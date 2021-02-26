@@ -11,8 +11,6 @@ var topForm = document.querySelector('#top');
 // Global Variables
 var ideaCards = [];
 var freshIdea;
-var activatedStar;
-var deleteButton;
 
 // Event listeners
 window.addEventListener('load', function() {
@@ -21,7 +19,7 @@ window.addEventListener('load', function() {
 
 topForm.addEventListener('input', checkInputs);
 saveButton.addEventListener('click', buildIdeaCard);
-deleteButton.addEventListener('click', deleteIdea);
+bottomForm.addEventListener('click', deleteIdea);
 
 //functions
 function checkInputs() {
@@ -61,7 +59,6 @@ function displayCard() {
   </article>
   `;
   }
-  getVariables();
 }
 
 function clearInputs() {
@@ -69,13 +66,23 @@ function clearInputs() {
   bodyInput.value = '';
 }
 
-function getVariables() {
-  activatedStar = document.querySelector('#activeStar');
-  deleteButton = document.querySelector('#deleteCard');
-}
-
 function deleteIdea(event) {
   if (event.target.classList.contains('delete-card')) {
-    event.target.closest('saved-card').remove();
+    event.target.closest('article').remove();
   }
 }
+
+// var savedCard = document.querySelector('.saved-card')
+
+// savedCard.addEventListener('click', function(event) {
+//  if (event.target.className === 'delete-card') {
+//      event.target.closest('saved-card').remove();
+// }
+//})
+
+
+// var delete = document.getElementById('delete-card');
+// deleteCard.onclick = function () {
+//     document.getElementById('saved-card').remove();
+//     this.remove();
+// };

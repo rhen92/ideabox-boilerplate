@@ -6,8 +6,8 @@ class Idea {
     this.star = false;
   }
 
-  saveToStorage() {
-
+  saveToStorage(ideaCards) {
+  localStorage.setItem('ideaCard', JSON.stringify(ideaCards));
   }
 
   deleteFromStorage() {

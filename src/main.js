@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
 
 topForm.addEventListener('input', checkInputs);
 saveButton.addEventListener('click', buildIdeaCard);
-bottomForm.addEventListener('click', deleteIdea);
+bottomForm.addEventListener('click', updateArray);
 
 //functions
 function checkInputs() {
@@ -48,7 +48,7 @@ function displayCard() {
   <article class="saved-card">
     <div class="card-top">
       <img id="activeStar" class="active-star" src="./assets/star-active.svg" alt="active star">
-      <input id="deleteCard" class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
+      <input id="${ideaCards[i].id}" class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
     <p class="idea-body"> ${ideaCards[i].body}</p>
@@ -72,17 +72,32 @@ function deleteIdea(event) {
   }
 }
 
-// var savedCard = document.querySelector('.saved-card')
+function updateArray(event) {
+  for(var i = 0; i < ideaCards.length; i++) {
+    if(ideaCards[i].id === parseInt(event.target.id)) {
+      ideaCards.splice(i, 1);
+    }
+  }
+  deleteIdea(event);
+}
 
-// savedCard.addEventListener('click', function(event) {
-//  if (event.target.className === 'delete-card') {
-//      event.target.closest('saved-card').remove();
+
+
+
+// function deleteIdea(event) {
+//   if (event.target.classList.contains('delete-card')) {
+//     for (var i = 0; i < ideaCards.length; i++) {
+//       var par = parseInt(event.target.id);
+//        if (ideaCards[i].id === par) {
+//       ideaCards.splice(i, 1);
+//       event.target.closest('article').remove();
+//        }
+//     }
+//   }
 // }
-//})
 
-
-// var delete = document.getElementById('delete-card');
-// deleteCard.onclick = function () {
-//     document.getElementById('saved-card').remove();
-//     this.remove();
-// };
+// function sliceIdeaCards() {
+//   for (var i = 0; i < ideaCards.length; i++) {
+//
+//   }
+// }

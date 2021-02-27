@@ -10,7 +10,7 @@ var topForm = document.querySelector('#top');
 // Global Variables
 var ideaCards = [];
 var freshIdea;
-var storedIdeas
+
 // Event listeners
 window.addEventListener('load', function() {
   saveButton.disabled = true;
@@ -79,9 +79,11 @@ function clearInputs() {
 }
 
 function updateArray(event) {
-  for(var i = 0; i < ideaCards.length; i++) {
-    if(ideaCards[i].id === parseInt(event.target.id)) {
+  for (var i = 0; i < ideaCards.length; i++) {
+    if (ideaCards[i].id === parseInt(event.target.id)) {
       ideaCards.splice(i, 1);
+      console.log(ideaCards[i]);
+      ideaCards[i].deleteFromStorage(ideaCards[i]);
     }
   }
 }
@@ -93,18 +95,21 @@ function deleteIdea(event) {
 }
 
 function starIdea(event) {
-    if (event.target.classList.contains('inactive')) {
-      event.target.src = './assets/star-active.svg';
-      event.target.classList.remove('inactive');
-      event.target.classList.add('active');
-    } else if (event.target.classList.contains('active')) {
-      event.target.src = './assets/star.svg';
-      event.target.classList.remove('active');
-      event.target.classList.add('inactive');
-    }
+  if (event.target.classList.contains('inactive')) {
+    event.target.src = './assets/star-active.svg';
+    event.target.classList.remove('inactive');
+    event.target.classList.add('active');
+  } else if (event.target.classList.contains('active')) {
+    event.target.src = './assets/star.svg';
+    event.target.classList.remove('active');
+    event.target.classList.add('inactive');
+  }
 }
 
 function showStorage() {
-  ideaCards = JSON.parse(localStorage.getItem('ideaCard'));
-  displayCard();
+  if (!ideaCards) {
+    ideaCards = JSON.parse(localStorage.getItem('ideaCard'));
+    displayCard();
+  }
+  return;
 }

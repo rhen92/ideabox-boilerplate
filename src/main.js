@@ -10,19 +10,15 @@ var topForm = document.querySelector('#top');
 // Global Variables
 var ideaCards = [];
 var freshIdea;
-
+var storedIdeas
 // Event listeners
 window.addEventListener('load', function() {
   saveButton.disabled = true;
+  showStorage();
 })
 
 topForm.addEventListener('input', checkInputs);
-// saveButton.addEventListener('click', buildIdeaCard);
-// bottomForm.addEventListener('click', updateArray);
-
 window.addEventListener('click', clickHandler);
-
-
 
 //functions
 function clickHandler(event) {
@@ -51,6 +47,7 @@ function buildIdeaCard(event) {
 
 function addIdeaCards() {
   ideaCards.push(freshIdea);
+  freshIdea.saveToStorage(ideaCards);
   displayCard();
   clearInputs();
   saveButton.disabled = true;
@@ -105,5 +102,9 @@ function starIdea(event) {
       event.target.classList.remove('active');
       event.target.classList.add('inactive');
     }
+}
 
+function showStorage() {
+  ideaCards = JSON.parse(localStorage.getItem('ideaCard'));
+  displayCard();
 }

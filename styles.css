@@ -147,6 +147,10 @@ body {
   background-color: #cccccc;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* ~~~~~~ Cards ~~~~~~~*/
 .saved-card {
   border-width: 1px;

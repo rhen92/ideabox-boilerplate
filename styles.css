@@ -147,6 +147,10 @@ body {
   background-color: #cccccc;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* ~~~~~~ Cards ~~~~~~~*/
 .saved-card {
   border-width: 1px;
@@ -178,6 +182,7 @@ body {
   font-weight: bold;
   color: #1F1F3D;
   padding-left: 20px;
+  overflow-wrap: break-word;
 }
 
 .idea-body {
@@ -187,6 +192,7 @@ body {
   overflow: scroll;
   overflow-x: hidden;
   height: 43%;
+  overflow-wrap: break-word;
 }
 
 .bottom {

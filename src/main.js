@@ -17,16 +17,33 @@ window.addEventListener('load', function() {
 })
 
 topForm.addEventListener('input', checkInputs);
-saveButton.addEventListener('click', buildIdeaCard);
+// saveButton.addEventListener('click', buildIdeaCard);
+// bottomForm.addEventListener('click', updateArray);
 
-functions
+window.addEventListener('click', clickHandler);
+
+
+
+//functions
+function clickHandler(event) {
+  event.preventDefault();
+  if (event.target.classList.contains('delete-card')) {
+    deleteIdea(event);
+    updateArray(event);
+  } else if (event.target.id === 'saveButton') {
+    buildIdeaCard(event);
+  } else if (event.target.classList.contains('star')) {
+    starIdea(event);
+  }
+}
+
 function checkInputs() {
   if (titleInput.value && bodyInput.value) {
     saveButton.disabled = false;
   }
 }
 
-function buildIdeaCard() {
+function buildIdeaCard(event) {
   event.preventDefault();
   freshIdea = new Idea(titleInput.value, bodyInput.value);
   addIdeaCards();
@@ -45,8 +62,8 @@ function displayCard() {
     bottomForm.innerHTML += `
   <article class="saved-card">
     <div class="card-top">
-      <img class="active-star" src="./assets/star-active.svg" alt="active star">
-      <img class="delete-card" src="./assets/delete.svg" alt="delete card">
+      <img id="inactiveStar" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
+      <input id=${ideaCards[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
     <p class="idea-body"> ${ideaCards[i].body}</p>
@@ -62,4 +79,31 @@ function displayCard() {
 function clearInputs() {
   titleInput.value = '';
   bodyInput.value = '';
+}
+
+function updateArray(event) {
+  for(var i = 0; i < ideaCards.length; i++) {
+    if(ideaCards[i].id === parseInt(event.target.id)) {
+      ideaCards.splice(i, 1);
+    }
+  }
+}
+
+function deleteIdea(event) {
+  if (event.target.classList.contains('delete-card')) {
+    event.target.closest('article').remove();
+  }
+}
+
+function starIdea(event) {
+    if (event.target.classList.contains('inactive')) {
+      event.target.src = './assets/star-active.svg';
+      event.target.classList.remove('inactive');
+      event.target.classList.add('active');
+    } else if (event.target.classList.contains('active')) {
+      event.target.src = './assets/star.svg';
+      event.target.classList.remove('active');
+      event.target.classList.add('inactive');
+    }
+
 }

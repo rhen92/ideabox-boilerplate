@@ -48,7 +48,7 @@ function displayCard() {
   <article class="saved-card">
     <div class="card-top">
       <img id="activeStar" class="active-star" src="./assets/star-active.svg" alt="active star">
-      <input id="deleteCard" class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
+      <input id=${ideaCards[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
     <p class="idea-body"> ${ideaCards[i].body}</p>
@@ -70,19 +70,13 @@ function deleteIdea(event) {
   if (event.target.classList.contains('delete-card')) {
     event.target.closest('article').remove();
   }
+  updateArray();
 }
 
-// var savedCard = document.querySelector('.saved-card')
-
-// savedCard.addEventListener('click', function(event) {
-//  if (event.target.className === 'delete-card') {
-//      event.target.closest('saved-card').remove();
-// }
-//})
-
-
-// var delete = document.getElementById('delete-card');
-// deleteCard.onclick = function () {
-//     document.getElementById('saved-card').remove();
-//     this.remove();
-// };
+function updateArray() {
+  for(var i = 0; i < ideaCards.length; i++) {
+    if(ideaCards[i].id === parseInt(event.target.id)) {
+      ideaCards.splice(i, 1);
+    }
+  }
+}

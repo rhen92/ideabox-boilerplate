@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
 topForm.addEventListener('input', checkInputs);
 window.addEventListener('click', clickHandler);
 
-//functions
+//Functions
 function clickHandler(event) {
   event.preventDefault();
   if (event.target.classList.contains('delete-card')) {
@@ -58,7 +58,7 @@ function displayCard() {
     bottomForm.innerHTML += `
   <article class="saved-card">
     <div class="card-top">
-      <img id="inactiveStar" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
+      <img id="${ideaCards[i].id}" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
       <input id=${ideaCards[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
@@ -70,6 +70,7 @@ function displayCard() {
   </article>
   `;
   }
+  isItStarred();
 }
 
 function clearInputs() {
@@ -78,11 +79,11 @@ function clearInputs() {
 }
 
 function updateArray(event) {
+  var controller = new Idea();
   for (var i = 0; i < ideaCards.length; i++) {
     if (ideaCards[i].id === parseInt(event.target.id)) {
       ideaCards.splice(i, 1);
-      console.log("ideaCards",ideaCards);
-      ideaCards[i].deleteFromStorage(ideaCards);
+      controller.deleteFromStorage(ideaCards);
     }
   }
 }
@@ -98,6 +99,7 @@ function starIdea(event) {
     event.target.src = './assets/star-active.svg';
     event.target.classList.remove('inactive');
     event.target.classList.add('active');
+    changeStar(event);
   } else if (event.target.classList.contains('active')) {
     event.target.src = './assets/star.svg';
     event.target.classList.remove('active');
@@ -105,13 +107,36 @@ function starIdea(event) {
   }
 }
 
-function showStorage() {
-    var storage = JSON.parse(localStorage.getItem('ideaCard'));
-    if(!storage) {
-      return;
+function changeStar(event) {
+  for (var i = 0; i < ideaCards.length; i++) {
+    if (ideaCards[i].id === parseInt(event.target.id)) {
+      ideaCards[i].updateIdea();
+      ideaCards[i].saveToStorage(ideaCards);
     }
-    for(var i = 0; i < storage.length; i++) {
-      ideaCards.push(new Idea(storage[i].title, storage[i].body, storage[i].id))
-    }
-    displayCard();
   }
+}
+
+function showStorage() {
+  var storage = JSON.parse(localStorage.getItem('ideaCard'));
+  if (!storage) {
+    return;
+  }
+  for (var i = 0; i < storage.length; i++) {
+    ideaCards.push(new Idea(storage[i].title, storage[i].body, storage[i].id, storage[i].star))
+  }
+  displayCard();
+}
+
+function isItStarred() {
+  for (var i = 0; i < ideaCards.length; i++) {
+    var starImage = document.querySelectorAll('.star');
+    if (ideaCards[i].star) {
+      for (var i = 0; i < starImage.length; i++) {
+        starImage[i].src = './assets/star-active.svg';
+        if (!ideaCards[i].star) {
+          starImage[i].src = './assets/star.svg';
+        }
+      }
+    }
+  }
+}

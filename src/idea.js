@@ -1,20 +1,23 @@
 class Idea {
-  constructor(title, body) {
+  constructor(title, body, id, star=false) {
     this.title = title;
     this.body = body;
-    this.id = Date.now();
-    this.star = false;
+    this.id = id || Date.now();
+    this.star = star;
   }
 
-  saveToStorage() {
-
+  saveToStorage(ideaCards) {
+    localStorage.setItem('ideaCard', JSON.stringify(ideaCards));
   }
 
-  deleteFromStorage() {
-
+  deleteFromStorage(ideaCards) {
+    this.saveToStorage(ideaCards);
+     if(ideaCards.length < 1) {
+      localStorage.removeItem('ideaCard');
+    }
   }
-
+  
   updateIdea() {
-
+    this.star = !this.star;
   }
 }

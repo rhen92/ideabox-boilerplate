@@ -1,30 +1,25 @@
 // Query Selectors
-var titleInput = document.querySelector('#titleInput');
 var bodyInput = document.querySelector('#bodyInput');
-var saveButton = document.querySelector('#saveButton');
-var searchInput = document.querySelector('#searchInput');
-var searchButton = document.querySelector('#searchButton');
 var bottomForm = document.querySelector('#bottomForm');
+var saveButton = document.querySelector('#saveButton');
+var searchButton = document.querySelector('#searchButton');
+var searchInput = document.querySelector('#searchInput');
+var titleInput = document.querySelector('#titleInput');
 var topForm = document.querySelector('#top');
 
 // Global Variables
 var ideaCards = [];
 var freshIdea;
-
 // Event listeners
 window.addEventListener('load', function() {
   saveButton.disabled = true;
+  showStorage();
 })
 
 topForm.addEventListener('input', checkInputs);
-// saveButton.addEventListener('click', buildIdeaCard);
-// bottomForm.addEventListener('click', updateArray);
-
 window.addEventListener('click', clickHandler);
 
-
-
-//functions
+//Functions
 function clickHandler(event) {
   event.preventDefault();
   if (event.target.classList.contains('delete-card')) {
@@ -51,6 +46,7 @@ function buildIdeaCard(event) {
 
 function addIdeaCards() {
   ideaCards.push(freshIdea);
+  freshIdea.saveToStorage(ideaCards);
   displayCard();
   clearInputs();
   saveButton.disabled = true;
@@ -62,7 +58,7 @@ function displayCard() {
     bottomForm.innerHTML += `
   <article class="saved-card">
     <div class="card-top">
-      <img id="inactiveStar" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
+      <img id="${ideaCards[i].id}" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
       <input id=${ideaCards[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
     <p class="idea-title">${ideaCards[i].title}</p>
@@ -74,6 +70,7 @@ function displayCard() {
   </article>
   `;
   }
+  isItStarred();
 }
 
 function clearInputs() {
@@ -82,9 +79,11 @@ function clearInputs() {
 }
 
 function updateArray(event) {
-  for(var i = 0; i < ideaCards.length; i++) {
-    if(ideaCards[i].id === parseInt(event.target.id)) {
+  var controller = new Idea();
+  for (var i = 0; i < ideaCards.length; i++) {
+    if (ideaCards[i].id === parseInt(event.target.id)) {
       ideaCards.splice(i, 1);
+      controller.deleteFromStorage(ideaCards);
     }
   }
 }
@@ -96,14 +95,48 @@ function deleteIdea(event) {
 }
 
 function starIdea(event) {
-    if (event.target.classList.contains('inactive')) {
-      event.target.src = './assets/star-active.svg';
-      event.target.classList.remove('inactive');
-      event.target.classList.add('active');
-    } else if (event.target.classList.contains('active')) {
-      event.target.src = './assets/star.svg';
-      event.target.classList.remove('active');
-      event.target.classList.add('inactive');
-    }
+  if (event.target.classList.contains('inactive')) {
+    event.target.src = './assets/star-active.svg';
+    event.target.classList.remove('inactive');
+    event.target.classList.add('active');
+    changeStar(event);
+  } else if (event.target.classList.contains('active')) {
+    event.target.src = './assets/star.svg';
+    event.target.classList.remove('active');
+    event.target.classList.add('inactive');
+  }
+}
 
+function changeStar(event) {
+  for (var i = 0; i < ideaCards.length; i++) {
+    if (ideaCards[i].id === parseInt(event.target.id)) {
+      ideaCards[i].updateIdea();
+      ideaCards[i].saveToStorage(ideaCards);
+    }
+  }
+}
+
+function showStorage() {
+  var storage = JSON.parse(localStorage.getItem('ideaCard'));
+  if (!storage) {
+    return;
+  }
+  for (var i = 0; i < storage.length; i++) {
+    ideaCards.push(new Idea(storage[i].title, storage[i].body, storage[i].id, storage[i].star))
+  }
+  displayCard();
+}
+
+function isItStarred() {
+  for (var i = 0; i < ideaCards.length; i++) {
+    var starImage = document.querySelectorAll('.star');
+    if (ideaCards[i].star) {
+      for (var i = 0; i < starImage.length; i++) {
+        starImage[i].src = './assets/star-active.svg';
+        if (!ideaCards[i].star) {
+          starImage[i].src = './assets/star.svg';
+        }
+      }
+    }
+  }
 }

@@ -1,9 +1,9 @@
 class Idea {
-  constructor(title, body, id) {
+  constructor(title, body, id, star=false) {
     this.title = title;
     this.body = body;
     this.id = id || Date.now();
-    this.star = false;
+    this.star = star;
   }
 
   saveToStorage(ideaCards) {
@@ -11,15 +11,13 @@ class Idea {
   }
 
   deleteFromStorage(ideaCards) {
-    if (ideaCards.length > 2) {
-      console.log("if greater", ideaCards.length);
-      localStorage.setItem('ideaCard', JSON.stringify(ideaCards))
-    } else if (ideaCards.length === 1) {
-      console.log("equal", ideaCards.length);
+    this.saveToStorage(ideaCards);
+     if(ideaCards.length < 1) {
       localStorage.removeItem('ideaCard');
     }
   }
+  
   updateIdea() {
-
+    this.star = !this.star;
   }
 }

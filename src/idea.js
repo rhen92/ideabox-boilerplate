@@ -7,13 +7,12 @@ class Idea {
   }
 
   saveToStorage(ideaCards) {
-  localStorage.setItem('ideaCard', JSON.stringify(ideaCards));
+    localStorage.setItem('ideaCard', JSON.stringify(ideaCards));
   }
 
-  deleteFromStorage() {
-
-  }
-
+  deleteFromStorage(ideaCards) {
+    localStorage.removeItem('ideaCard');
+    }
   updateIdea() {
 
   }

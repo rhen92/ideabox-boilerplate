@@ -1,16 +1,15 @@
 // Query Selectors
-var titleInput = document.querySelector('#titleInput');
 var bodyInput = document.querySelector('#bodyInput');
-var saveButton = document.querySelector('#saveButton');
-var searchInput = document.querySelector('#searchInput');
-var searchButton = document.querySelector('#searchButton');
 var bottomForm = document.querySelector('#bottomForm');
+var saveButton = document.querySelector('#saveButton');
+var searchButton = document.querySelector('#searchButton');
+var searchInput = document.querySelector('#searchInput');
+var titleInput = document.querySelector('#titleInput');
 var topForm = document.querySelector('#top');
 
 // Global Variables
 var ideaCards = [];
 var freshIdea;
-
 // Event listeners
 window.addEventListener('load', function() {
   saveButton.disabled = true;
@@ -81,9 +80,9 @@ function clearInputs() {
 function updateArray(event) {
   for (var i = 0; i < ideaCards.length; i++) {
     if (ideaCards[i].id === parseInt(event.target.id)) {
+      // ideaCards[i].deleteFromStorage(ideaCards);
       ideaCards.splice(i, 1);
-      console.log(ideaCards[i]);
-      ideaCards[i].deleteFromStorage(ideaCards[i]);
+      ideaCards[i].deleteFromStorage(ideaCards);
     }
   }
 }
@@ -107,9 +106,9 @@ function starIdea(event) {
 }
 
 function showStorage() {
-  if (!ideaCards) {
-    ideaCards = JSON.parse(localStorage.getItem('ideaCard'));
+    var storage = JSON.parse(localStorage.getItem('ideaCard'));
+    for(var i = 0; i < storage.length; i++) {
+      ideaCards.push(new Idea(storage[i].title, storage[i].body))
+    }
     displayCard();
   }
-  return;
-}

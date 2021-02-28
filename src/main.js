@@ -80,8 +80,8 @@ function clearInputs() {
 function updateArray(event) {
   for (var i = 0; i < ideaCards.length; i++) {
     if (ideaCards[i].id === parseInt(event.target.id)) {
-      // ideaCards[i].deleteFromStorage(ideaCards);
       ideaCards.splice(i, 1);
+      console.log("ideaCards",ideaCards);
       ideaCards[i].deleteFromStorage(ideaCards);
     }
   }
@@ -107,8 +107,11 @@ function starIdea(event) {
 
 function showStorage() {
     var storage = JSON.parse(localStorage.getItem('ideaCard'));
+    if(!storage) {
+      return;
+    }
     for(var i = 0; i < storage.length; i++) {
-      ideaCards.push(new Idea(storage[i].title, storage[i].body))
+      ideaCards.push(new Idea(storage[i].title, storage[i].body, storage[i].id))
     }
     displayCard();
   }

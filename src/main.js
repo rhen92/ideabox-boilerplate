@@ -4,13 +4,17 @@ var bottomForm = document.querySelector('#bottomForm');
 var saveButton = document.querySelector('#saveButton');
 var searchButton = document.querySelector('#searchButton');
 var searchInput = document.querySelector('#searchInput');
+var showStarredButton = document.querySelector('#showButton');
+var starImage = document.querySelectorAll('.star');
 var titleInput = document.querySelector('#titleInput');
 var topForm = document.querySelector('#top');
-var showStarredButton = document.querySelector('#showButton');
 
 // Global Variables
-var ideaCards = [];
 var freshIdea;
+var ideaCards = [];
+var starredIdeasArray = [];
+var starSrc;
+var starClass;
 // Event listeners
 window.addEventListener('load', function() {
   saveButton.disabled = true;
@@ -25,12 +29,11 @@ function clickHandler(event) {
   event.preventDefault();
   if (event.target.classList.contains('delete-card')) {
     deleteIdea(event);
-    updateArray(event);
   } else if (event.target.id === 'saveButton') {
     buildIdeaCard(event);
   } else if (event.target.classList.contains('star')) {
     starIdea(event);
-  } else if (event.target.classList.contains('showStarredButton')) {
+  } else if (event.target.id === 'showButton') {
     showStarredIdeas(event);
   }
 }
@@ -50,22 +53,29 @@ function buildIdeaCard(event) {
 function addIdeaCards() {
   ideaCards.push(freshIdea);
   freshIdea.saveToStorage(ideaCards);
-  displayCard();
+  displayCard(ideaCards);
   clearInputs();
   saveButton.disabled = true;
 }
 
-function displayCard() {
+function displayCard(array) {
   bottomForm.innerHTML = '';
-  for (var i = 0; i < ideaCards.length; i++) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].star) {
+      starSrc = './assets/star-active.svg';
+      starClass = 'active'
+    } else {
+      starSrc = './assets/star.svg';
+      starClass = 'inactive'
+    }
     bottomForm.innerHTML += `
   <article class="saved-card">
     <div class="card-top">
-      <img id="${ideaCards[i].id}" class="inactive star" type="image" src="./assets/star.svg" alt="inactive star">
-      <input id=${ideaCards[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
+      <img id="${array[i].id}" class= "${starClass} star" type="image" src=${starSrc} alt=${starClass}>
+      <input id=${array[i].id} class="delete-card" type="image" src="./assets/delete.svg" name="delete" alt="delete idea"/>
     </div>
-    <p class="idea-title">${ideaCards[i].title}</p>
-    <p class="idea-body"> ${ideaCards[i].body}</p>
+    <p class="idea-title">${array[i].title}</p>
+    <p class="idea-body"> ${array[i].body}</p>
     <div class="card-bottom">
       <img src="./assets/comment.svg" alt="comment button">
       <label>Comment</label>
@@ -73,7 +83,6 @@ function displayCard() {
   </article>
   `;
   }
-  isItStarred();
 }
 
 function clearInputs() {
@@ -81,11 +90,11 @@ function clearInputs() {
   bodyInput.value = '';
 }
 
-function updateArray(event) {
+function updateArray(array) {
   var controller = new Idea();
-  for (var i = 0; i < ideaCards.length; i++) {
-    if (ideaCards[i].id === parseInt(event.target.id)) {
-      ideaCards.splice(i, 1);
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].id === parseInt(event.target.id)) {
+      array.splice(i, 1);
       controller.deleteFromStorage(ideaCards);
     }
   }
@@ -95,6 +104,8 @@ function deleteIdea(event) {
   if (event.target.classList.contains('delete-card')) {
     event.target.closest('article').remove();
   }
+  updateArray(ideaCards);
+  updateArray(starredIdeasArray);
 }
 
 function starIdea(event) {
@@ -128,38 +139,24 @@ function showStorage() {
   for (var i = 0; i < storage.length; i++) {
     ideaCards.push(new Idea(storage[i].title, storage[i].body, storage[i].id, storage[i].star))
   }
-  displayCard();
+  displayCard(ideaCards);
 }
 
-function isItStarred() {
+function showStarredIdeas(event) {
   for (var i = 0; i < ideaCards.length; i++) {
-    var starImage = document.querySelectorAll('.star');
-    for (var i = 0; i < starImage.length; i++) {
-      if (ideaCards[i].star) {
-        starImage[i].src = './assets/star-active.svg';
-        starImage[i].classList.remove('inactive');
-        starImage[i].classList.add('active');
-      } else if (!ideaCards[i].star) {
-          starImage[i].src = './assets/star.svg';
-        }
-      }
+    if (ideaCards[i].star && !starredIdeasArray.includes(ideaCards[i])) {
+      starredIdeasArray.push(ideaCards[i]);
     }
   }
+  buttonAction();
+}
 
-
-// function showStarredIdeas(event) {
-//   var starredIdeasArray = [];
-//   console.log('pants');
-//   for (var i = 0; i < ideaCards.length; i++) {
-//     if(ideaCards[i].star) {
-//       starredIdeasArray.push(ideaCards[i]);
-//     }
-//   }
-//   if (showStarredButton.innerText === 'Show Starred Ideas') {
-//     displayCard(starredIdeasArray)
-//     showStarredButton.innerText = 'Show All Ideas';
-//   } else {
-//     showStarredButton.innerText = 'Show Starred Ideas';
-//     displayCard(ideaCards);
-//   }
-// }
+function buttonAction() {
+  if (showStarredButton.innerText === 'Show Starred Ideas') {
+    displayCard(starredIdeasArray);
+    showStarredButton.innerText = 'Show All Ideas';
+  } else {
+    showStarredButton.innerText = 'Show Starred Ideas';
+    displayCard(ideaCards);
+  }
+}

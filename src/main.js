@@ -24,6 +24,8 @@ window.addEventListener('load', function() {
 topForm.addEventListener('input', checkInputs);
 window.addEventListener('click', clickHandler);
 
+searchInput.addEventListener('input', searchIdeas);
+searchInput.addEventListener('keyup', clearSearch);
 //Functions
 function clickHandler(event) {
   event.preventDefault();
@@ -157,6 +159,27 @@ function buttonAction() {
     showStarredButton.innerText = 'Show All Ideas';
   } else {
     showStarredButton.innerText = 'Show Starred Ideas';
+    displayCard(ideaCards);
+  }
+}
+
+function searchIdeas(event) {
+  event.preventDefault();
+  if (searchInput.value === '') {
+    displayCard(ideaCards);
+  } else {
+    var searchedIdeas = [];
+    for (var i = 0; i < ideaCards.length; i++) {
+      if (ideaCards[i].body.includes(searchInput.value) || ideaCards[i].title.includes(searchInput.value)) {
+        searchedIdeas.push(ideaCards[i]);
+      }
+    }
+    displayCard(searchedIdeas);
+  }
+}
+
+function clearSearch() {
+  if (searchInput.value === '') {
     displayCard(ideaCards);
   }
 }

@@ -25,7 +25,7 @@ Turing 2102 FE Week 5 Group Project
 -The save button is disabled until user adds into both inputs.   
 -Once the user has finished their idea they can click the save button.  
 -User can add a star to some of their favorite ideas displayed.  
--Once the user adds the star they can then click the button on the nav bar "Show Starred Ideas" to display all their favorite ideas they starred. 
+-Once the user adds the star they can then click the button on the nav bar "Show Starred Ideas" to display all their favorite ideas they starred.  
 -User can click "Display all ideas" button on the nav to go back to where the page shows all their ideas created.  
 -User can efficently and quickly search through their ideas with the search ideas bar.  
 -If the user refreshes the page they dont have to worry because the ideas will still all be there for them to see!   

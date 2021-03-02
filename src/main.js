@@ -1,4 +1,3 @@
-// Query Selectors
 var bodyInput = document.querySelector('#bodyInput');
 var bottomForm = document.querySelector('#bottomForm');
 var saveButton = document.querySelector('#saveButton');
@@ -9,13 +8,10 @@ var starImage = document.querySelectorAll('.star');
 var titleInput = document.querySelector('#titleInput');
 var topForm = document.querySelector('#top');
 
-// Global Variables
 var freshIdea;
 var ideaCards = [];
 var starredIdeasArray = [];
-var starSrc;
-var starClass;
-// Event listeners
+
 window.addEventListener('load', function() {
   saveButton.disabled = true;
   showStorage();
@@ -23,10 +19,9 @@ window.addEventListener('load', function() {
 
 topForm.addEventListener('input', checkInputs);
 window.addEventListener('click', clickHandler);
-
 searchInput.addEventListener('input', searchIdeas);
-searchInput.addEventListener('keyup', clearSearch);
-//Functions
+searchButton.addEventListener('click', clearSearch);
+
 function clickHandler(event) {
   event.preventDefault();
   if (event.target.classList.contains('delete-card')) {
@@ -61,6 +56,8 @@ function addIdeaCards() {
 }
 
 function displayCard(array) {
+  var starSrc;
+  var starClass;
   bottomForm.innerHTML = '';
   for (var i = 0; i < array.length; i++) {
     if (array[i].star) {
@@ -170,7 +167,7 @@ function searchIdeas(event) {
   } else {
     var searchedIdeas = [];
     for (var i = 0; i < ideaCards.length; i++) {
-      if (ideaCards[i].body.includes(searchInput.value) || ideaCards[i].title.includes(searchInput.value)) {
+      if (ideaCards[i].body.includes(searchInput.value.toUpperCase()) || ideaCards[i].title.includes(searchInput.value.toUpperCase()) || ideaCards[i].body.includes(searchInput.value.toLowerCase()) || ideaCards[i].title.includes(searchInput.value.toLowerCase())) {
         searchedIdeas.push(ideaCards[i]);
       }
     }

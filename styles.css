@@ -1,16 +1,4 @@
-/* COLORS
-dark blue: #1F1F3D
-med blue: #A9AAD2
-light blue/grey: #EAEAF4
-white: #FFFFFF
-
-thin line: #353567
-bottom of card/show ideas button: #5356A4
-'Comment' text color: #E9E9F3
-'filter starred ideas': #BFBFDD
- */
 * {
-  /* border: 1px solid red; */
   font-family: "Open Sans";
 }
 
@@ -196,3 +184,15 @@ body {
   align-content: baseline;
   height: 100%;
 }
+
+/* COLORS KEY
+dark blue: #1F1F3D
+med blue: #A9AAD2
+light blue/grey: #EAEAF4
+white: #FFFFFF
+
+thin line: #353567
+bottom of card/show ideas button: #5356A4
+'Comment' text color: #E9E9F3
+'filter starred ideas': #BFBFDD
+*/

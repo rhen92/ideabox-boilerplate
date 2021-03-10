@@ -18,7 +18,7 @@ Turing 2102 FE Week 5 Group Project
 
 ## Deploy Link:  
 
-- To view the project in action, [click here!](https://bigbike96.github.io/ideabox-boilerplate)
+- To view the project in action, [click here!](https://rhen92.github.io/ideabox-boilerplate/)
 
 ## Explaining How It Works:  
 - User can input their idea into the "Title" and "Body" inputs.   
